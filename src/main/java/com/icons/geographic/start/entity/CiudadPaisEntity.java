@@ -17,8 +17,8 @@ import lombok.Data;
 public class CiudadPaisEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_ciudad_pais")
-	private Long idCiudadPais;
+	@Column(name = "id")
+	private Long id;
 	@Column
 	@NotNull
 	private String img;
@@ -33,6 +33,6 @@ public class CiudadPaisEntity {
 	private Double superficie;
 	@Column(name = "icon_geografic_aso")
 	@NotNull
-	private String iconGeograficosAsociado;
+	private IconGeograficoEntity iconGeograficosAsociado;
 
 }

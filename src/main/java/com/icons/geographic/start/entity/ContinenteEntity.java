@@ -17,8 +17,8 @@ import lombok.Data;
 public class ContinenteEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_continente")
-	private Long idContinente;
+	@Column(name = "id")
+	private Long id;
 	@Column
 	@NotNull
 	private String img;

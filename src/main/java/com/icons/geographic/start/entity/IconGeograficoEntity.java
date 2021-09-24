@@ -25,7 +25,7 @@ import lombok.Data;
 public class IconGeograficoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_icono;
+	private Long id;
 	@Column
 	@NotNull
 	private String img;
@@ -35,7 +35,7 @@ public class IconGeograficoEntity {
 	@Column(name = "`fecha_de_creacion`")
 	@NotNull
 	@DateTimeFormat
-	private LocalDateTime  fechaCreacion;
+	private LocalDateTime fechaCreacion;
 	@Column
 	@NotNull
 	private Float altura;
