@@ -1,12 +1,17 @@
 package com.icons.geographic.start.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.sun.istack.NotNull;
 
 import lombok.Data;
@@ -16,7 +21,7 @@ import lombok.Data;
 @Table(name = "`continente`")
 public class ContinenteEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "id")
 	private Long id;
 	@Column
@@ -25,8 +30,8 @@ public class ContinenteEntity {
 	@Column
 	@NotNull
 	private String denominacion;
-	@Column(name = "ciudades_icon_geo")
-	@NotNull
-	private String ciudadesIconGeo;
 
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
+	private List<CiudadPaisEntity> ciudadPaises;
 }
