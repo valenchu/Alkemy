@@ -14,8 +14,9 @@ public class IconGeoService {
 	public List<Icon> getResp() {
 		CiudadPais a = new CiudadPais(1L, "https://cdn-icons-png.flaticon.com/512/1717/1717547.png", "Francia",
 				67000000L, 1265468F);
-		return List.of(new Icon(1L, "https://cdn-icons-png.flaticon.com/512/1206/1206798.png", "Marcador",
-				LocalDate.now(), 129F, "A icon Wonderful", a));
+		Icon i = new Icon(1L, "https://cdn-icons-png.flaticon.com/512/1206/1206798.png", "Marcador", LocalDate.now(),
+				129F, "A icon Wonderful", a);
+		return List.of(i);
 	}
 
 }
