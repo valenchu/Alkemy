@@ -40,7 +40,7 @@ public class IconGeograficoEntity {
 	@Column(name = "`fecha_de_creacion`")
 	@NotNull
 	@DateTimeFormat
-	private LocalDateTime fechaCreacion;
+	private LocalDate fechaCreacion;
 	@Column
 	@NotNull
 	private Float altura;

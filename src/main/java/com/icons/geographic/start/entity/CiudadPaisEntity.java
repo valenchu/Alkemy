@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.icons.geographic.start.dto.Icon;
 import com.sun.istack.NotNull;
 
 import lombok.Data;
@@ -44,5 +46,7 @@ public class CiudadPaisEntity {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id")
 	private List<IconGeograficoEntity> iconos;
+	
+	
 
 }
