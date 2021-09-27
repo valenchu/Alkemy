@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
+import org.hibernate.mapping.*;
 import com.icons.geographic.start.dto.CiudadPais;
 import com.icons.geographic.start.dto.Icon;
 
@@ -12,11 +12,9 @@ import com.icons.geographic.start.dto.Icon;
 public class IconGeoService {
 
 	public List<Icon> getResp() {
-		CiudadPais a = new CiudadPais(1L, "https://cdn-icons-png.flaticon.com/512/1717/1717547.png", "Francia",
-				67000000L, 1265468F);
-		Icon i = new Icon(1L, "https://cdn-icons-png.flaticon.com/512/1206/1206798.png", "Marcador", LocalDate.now(),
-				129F, "A icon Wonderful", a);
-		return List.of(i);
+		return List.of(new Icon(1L, "https://cdn-icons-png.flaticon.com/512/1206/1206798.png", "Marcador",
+				LocalDate.now(), 129F, "A icon Wonderful", new CiudadPais(1L,
+						"https://cdn-icons-png.flaticon.com/512/1717/1717547.png", "Francia", 67000000L, 1265468F)));
 	}
 
 }
