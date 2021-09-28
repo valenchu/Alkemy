@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin("*")
 public class Inic {
-	
+
 	@GetMapping
 	public String rest() {
 		return "Todo OK";
