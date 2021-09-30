@@ -8,26 +8,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.icons.geographic.start.dto.Icon;
 import com.icons.geographic.start.entity.IconGeograficoEntity;
 import com.icons.geographic.start.service.IconGeoService;
 
 @RestController
-@RequestMapping("ic")
+@RequestMapping("icon")
 @CrossOrigin("*")
 public class IconGeoController {
 
-	private final IconGeoService iconGeoControllerService;
+    private final IconGeoService iconGeoControllerService;
 
-	@Autowired
-	public IconGeoController(IconGeoService iconGeoControllerService) {
-		this.iconGeoControllerService = iconGeoControllerService;
+    @Autowired
+    public IconGeoController(IconGeoService iconGeoControllerService) {
+	this.iconGeoControllerService = iconGeoControllerService;
 
-	}
+    }
 
-	@GetMapping
-	public List<IconGeograficoEntity> test() {
-		return iconGeoControllerService.getResp();
-	}
-
+    @GetMapping("List")
+    public List<IconGeograficoEntity> test() {
+	return iconGeoControllerService.getResp();
+    }
+    
+//    @PostMapping("CargaIc")
+//    public 
 }

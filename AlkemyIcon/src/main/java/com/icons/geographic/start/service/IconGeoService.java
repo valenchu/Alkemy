@@ -1,13 +1,10 @@
 package com.icons.geographic.start.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.icons.geographic.start.dto.CiudadPais;
-import com.icons.geographic.start.dto.Icon;
 import com.icons.geographic.start.entity.IconGeograficoEntity;
 import com.icons.geographic.start.repository.IconRepository;
 
@@ -18,7 +15,6 @@ public class IconGeoService {
 
 	@Autowired
 	public IconGeoService(IconRepository iconRepository) {
-		super();
 		this.iconRepository = iconRepository;
 	}
 
