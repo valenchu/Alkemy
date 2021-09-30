@@ -28,7 +28,7 @@ public class IconGeoController {
     public List<IconGeograficoEntity> test() {
 	return iconGeoControllerService.getResp();
     }
-    
+
 //    @PostMapping("CargaIc")
 //    public 
 }

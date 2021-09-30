@@ -12,11 +12,11 @@ import com.icons.geographic.start.service.CiudadPaisService;
 @CrossOrigin("*")
 public class CiudadPaisController {
 
-	private final CiudadPaisService ciudadPaisService;
+    private CiudadPaisService ciudadPaisService;
 
-	@Autowired
-	public CiudadPaisController(CiudadPaisService ciudadPaisService) {
-		this.ciudadPaisService = ciudadPaisService;
-	}
+    @Autowired
+    public CiudadPaisController(CiudadPaisService ciudadPaisService) {
+	this.ciudadPaisService = ciudadPaisService;
+    }
 
 }

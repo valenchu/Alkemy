@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,9 +38,9 @@ public class ContinenteController {
     public ResponseEntity<?> saveCont(@RequestBody ContinenteDto continenteDto,
 	    @Parameter(description = "Img of continent") @RequestParam String img,
 	    @Parameter(description = "Name of continent") @RequestParam String nomContinente) {
-	
-	ContinenteEntity continenteEntity = contienenteService.saveCont(continenteDto,img,nomContinente);
-	return new ResponseEntity<>(continenteEntity, HttpStatus.ACCEPTED);
+
+	ContinenteEntity continenteEntity = contienenteService.saveCont(continenteDto, img, nomContinente);
+	return new ResponseEntity<>(continenteEntity, HttpStatus.CREATED);
     }
 
     @GetMapping("allContinent")
@@ -52,9 +53,16 @@ public class ContinenteController {
     @Operation(summary = "Update for id the continent")
     public ResponseEntity<?> updateContinent(@PathVariable(value = "id") Long id,
 	    @RequestBody ContinenteDto continenteDto) {
-	
 
-	return null;
+	return new ResponseEntity<>(contienenteService.updateContinent(id, continenteDto), HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("deleteContinent/{id}")
+    @Operation(summary = "Update for id the continent")
+    public ResponseEntity<?> updateContinent(@PathVariable(value = "id") Long id) {
+	contienenteService.deleteContinent(id);
+	return new ResponseEntity<>(HttpStatus.OK);
 
     }
 
