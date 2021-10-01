@@ -1,14 +1,7 @@
 package com.icons.geographic.start.mapper;
 
-import java.util.Optional;
-
-import javax.annotation.Resource;
-
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
-import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import com.icons.geographic.start.dto.ContinenteDto;

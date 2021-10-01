@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class IconDto {
 
-	private Long id;
-	private String img;
-	private String denominacion;
-	private LocalDate fechaCreacion;
-	private Float altura;
-	private String historia;
-	private CiudadPaisDto ciudadPais;
+    private String img;
+    private String denominacion;
+    private LocalDate fechaCreacion;
+    private Float altura;
+    private String historia;
 
 }
