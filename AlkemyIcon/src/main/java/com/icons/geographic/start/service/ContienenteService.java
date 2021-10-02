@@ -7,7 +7,7 @@ import com.icons.geographic.start.entity.ContinenteEntity;
 
 public interface ContienenteService {
 
-    public List<ContinenteEntity> findAll();
+    public List<ContinenteDto> findAll();
 
     public ContinenteEntity saveCont(ContinenteDto continenteDto, String img, String nomb);
 

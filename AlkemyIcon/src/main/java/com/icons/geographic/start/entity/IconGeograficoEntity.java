@@ -1,29 +1,34 @@
 package com.icons.geographic.start.entity;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.sun.istack.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
+@SQLDelete(sql = "UPDATE incono_geografico SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 @Table(name = "`incono_geografico`")
 public class IconGeograficoEntity {
     @Id
@@ -31,22 +36,28 @@ public class IconGeograficoEntity {
     private Long id;
     @Column
     @NotNull
+    @NotEmpty
     private String img;
     @Column
     @NotNull
+    @NotEmpty
     private String denominacion;
     @Column(name = "`fecha_de_creacion`")
     @NotNull
+    @NotEmpty
     @DateTimeFormat
     private LocalDate fechaCreacion;
     @Column
+    private Boolean deleted = Boolean.FALSE;
+    @Column
     @NotNull
+    @NotEmpty
     private Float altura;
     @Column
     @NotNull
+    @NotEmpty
     private String historia;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(name = "city", joinColumns = @JoinColumn(name = "icon_id"), inverseJoinColumns = @JoinColumn(name = "city_id"))
-    private Set<CiudadPaisEntity> city = new HashSet<CiudadPaisEntity>();
+    @ManyToMany(mappedBy = "icon")
+    private List<CiudadPaisEntity> city = new ArrayList<CiudadPaisEntity>();
 }

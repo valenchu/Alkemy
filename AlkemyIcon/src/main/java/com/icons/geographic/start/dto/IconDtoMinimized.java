@@ -2,19 +2,14 @@ package com.icons.geographic.start.dto;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class ContinenteDto {
-    @JsonProperty(access = Access.READ_ONLY)
-    private Long id;
+public class IconDtoMinimized {
     @NotEmpty
     private String img;
     @NotEmpty

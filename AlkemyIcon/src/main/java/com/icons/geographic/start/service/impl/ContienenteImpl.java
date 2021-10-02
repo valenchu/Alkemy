@@ -33,8 +33,10 @@ public class ContienenteImpl implements ContienenteService {
     }
 
     // get all continent in the DB
-    public List<ContinenteEntity> findAll() {
-	return continenteRepository.findAll();
+    public List<ContinenteDto> findAll() {
+	List<ContinenteEntity> i = continenteRepository.findAll();
+	List <ContinenteDto> cdto = mapCont.mapList(i, ContinenteDto.class);
+	return  cdto;
     }
 
     // update continent for id

@@ -1,5 +1,6 @@
 package com.icons.geographic.start;
 
+import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +12,9 @@ public class AplicationConfig {
     @Bean
     public ModelMapper modelMapper() {
 	ModelMapper modelMapper = new ModelMapper();
-	modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+	modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
+	modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
+	modelMapper.getConfiguration().setAmbiguityIgnored(true);
 	return modelMapper;
     }
 }

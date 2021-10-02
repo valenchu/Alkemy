@@ -60,9 +60,9 @@ public class ContinenteController {
 
     @DeleteMapping("deleteContinent/{id}")
     @Operation(summary = "Delete for id the continent")
-    public ResponseEntity<?> updateContinent(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<?> deleteContinent(@PathVariable(value = "id") Long id) {
 	contienenteService.deleteContinent(id);
-	return new ResponseEntity<>(HttpStatus.OK);
+	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 

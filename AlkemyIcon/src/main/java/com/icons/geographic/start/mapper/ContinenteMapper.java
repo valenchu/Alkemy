@@ -1,5 +1,8 @@
 package com.icons.geographic.start.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,9 +26,19 @@ public class ContinenteMapper {
     }
 
     public ContinenteEntity guar(ContinenteEntity con, ContinenteDto continenteDto) {
-	con.setDenominacion(continenteDto.getDenominacion());
-	con.setImg(continenteDto.getImg());
+	if (continenteDto.getDenominacion().isEmpty()) {
+	    con.setImg(continenteDto.getImg());
+	} else if (continenteDto.getImg().isEmpty()) {
+	    con.setDenominacion(continenteDto.getDenominacion());
+	} else if (continenteDto.getDenominacion().isEmpty() && continenteDto.getImg().isEmpty()) {
+	    con = null;
+	}
+
 	return con;
+    }
+
+    public <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
+	return source.stream().map(element -> modelMapper.map(element, targetClass)).collect(Collectors.toList());
     }
 
 }
