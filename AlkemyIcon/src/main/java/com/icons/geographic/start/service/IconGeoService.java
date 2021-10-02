@@ -18,4 +18,6 @@ public interface IconGeoService {
     public List<IconDto> getRespMax();
 
     public void deleted(Long id);
+
+    public List<IconGeograficoEntity> getEntity();
 }

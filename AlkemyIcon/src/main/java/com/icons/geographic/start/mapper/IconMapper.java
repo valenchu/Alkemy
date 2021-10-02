@@ -4,13 +4,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.icons.geographic.start.dto.IconDtoEdited;
+import com.icons.geographic.start.entity.CiudadPaisEntity;
 import com.icons.geographic.start.entity.IconGeograficoEntity;
 
 @Component
@@ -21,14 +20,13 @@ public class IconMapper {
     @Autowired
     public IconMapper(ModelMapper modelMapper) {
 	this.modelMapper = modelMapper;
-	modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
-	modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
-	modelMapper.getConfiguration().setAmbiguityIgnored(true);
     }
 
     public <T> IconGeograficoEntity dtoToIcon(Object a) {
 
 	IconGeograficoEntity t = modelMapper.map(a, IconGeograficoEntity.class);
+	CiudadPaisEntity ciudad =modelMapper.map(a, CiudadPaisEntity.class);
+	t.getCity().add(ciudad);
 	return t;
     }
 

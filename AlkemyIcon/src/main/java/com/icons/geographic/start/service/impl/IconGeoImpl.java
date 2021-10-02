@@ -59,4 +59,10 @@ public class IconGeoImpl implements IconGeoService {
 	return minimized;
     }
 
+    @Override
+    public List<IconGeograficoEntity> getEntity() {
+
+	return iconRepository.findAll();
+    }
+
 }

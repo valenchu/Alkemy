@@ -57,8 +57,9 @@ public class CiudadPaisEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "continente_id")
     private ContinenteEntity continente;
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(name = "iconn", joinColumns = @JoinColumn(name = "city_id"), inverseJoinColumns = @JoinColumn(name = "icon_id"))
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinTable(name = "iconn", joinColumns = @JoinColumn(name = "city_id", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "icon_id", referencedColumnName = "id"))
     private List<IconGeograficoEntity> icon = new ArrayList<IconGeograficoEntity>();
 
 }

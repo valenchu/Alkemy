@@ -64,6 +64,13 @@ public class IconGeoController {
 	List<IconDtoMinimized> iconDtoMinimized = iconGeoService.getResp();
 	return new ResponseEntity<>(iconDtoMinimized, HttpStatus.OK);
     }
+    
+    @GetMapping("list2")
+    @Operation(summary = "find all list icon for img and name")
+    public ResponseEntity<?> listIcon2() {
+	List<IconGeograficoEntity> iconDtoMinimized = iconGeoService.getEntity();
+	return new ResponseEntity<>(iconDtoMinimized, HttpStatus.OK);
+    }
 
     @DeleteMapping("dellIcon/{id}")
     @Operation(summary = "dell icon BD")
