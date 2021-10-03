@@ -9,7 +9,7 @@ public interface ContienenteService {
 
     public List<ContinenteDto> findAll();
 
-    public ContinenteEntity saveCont(ContinenteDto continenteDto, String img, String nomb);
+    public ContinenteEntity saveCont(ContinenteDto continenteDto);
 
     public ContinenteEntity updateContinent(Long id, ContinenteDto continenteDto);
 

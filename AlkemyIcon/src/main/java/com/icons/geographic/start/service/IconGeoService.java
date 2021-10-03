@@ -2,6 +2,7 @@ package com.icons.geographic.start.service;
 
 import java.util.List;
 
+import com.icons.geographic.start.dto.EnrrollIconToCity;
 import com.icons.geographic.start.dto.IconDto;
 import com.icons.geographic.start.dto.IconDtoEdited;
 import com.icons.geographic.start.dto.IconDtoMinimized;
@@ -19,5 +20,7 @@ public interface IconGeoService {
 
     public void deleted(Long id);
 
-    public List<IconGeograficoEntity> getEntity();
+    public List<IconDto> getEntity();
+    
+    public IconGeograficoEntity enrrolToCity(EnrrollIconToCity enrrollIconToCity);
 }

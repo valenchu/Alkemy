@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.icons.geographic.start.dto.EnrrollIconToCity;
 import com.icons.geographic.start.dto.IconDto;
 import com.icons.geographic.start.dto.IconDtoEdited;
 import com.icons.geographic.start.dto.IconDtoMinimized;
@@ -64,11 +65,11 @@ public class IconGeoController {
 	List<IconDtoMinimized> iconDtoMinimized = iconGeoService.getResp();
 	return new ResponseEntity<>(iconDtoMinimized, HttpStatus.OK);
     }
-    
+
     @GetMapping("list2")
     @Operation(summary = "find all list icon for img and name")
     public ResponseEntity<?> listIcon2() {
-	List<IconGeograficoEntity> iconDtoMinimized = iconGeoService.getEntity();
+	List<IconDto> iconDtoMinimized = iconGeoService.getEntity();
 	return new ResponseEntity<>(iconDtoMinimized, HttpStatus.OK);
     }
 
@@ -92,5 +93,12 @@ public class IconGeoController {
 	IconGeograficoEntity ico = iconGeoService.updateIcon(iconDto, id);
 	return new ResponseEntity<>(ico, HttpStatus.OK);
 
+    }
+
+    @PutMapping("enrollIconToCity")
+    @Operation(summary = "enrrol data icon for id to city id")
+    public ResponseEntity<?> enrrollIconToCity(@RequestBody EnrrollIconToCity enrrollIconToCity) {
+	IconGeograficoEntity ic = iconGeoService.enrrolToCity(enrrollIconToCity);
+	return new ResponseEntity<>(ic, HttpStatus.OK);
     }
 }

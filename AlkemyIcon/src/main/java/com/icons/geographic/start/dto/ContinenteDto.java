@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ContinenteDto {
-    @JsonProperty(access = Access.READ_ONLY)
+    @JsonProperty(access = Access.AUTO)
     private Long id;
     @NotEmpty
     private String img;

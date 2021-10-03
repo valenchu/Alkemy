@@ -35,11 +35,9 @@ public class ContinenteController {
 
     @PostMapping("saveContinente")
     @Operation(summary = "Insert img the continent and name the continent")
-    public ResponseEntity<?> saveCont(@RequestBody ContinenteDto continenteDto,
-	    @Parameter(description = "Img of continent") @RequestParam String img,
-	    @Parameter(description = "Name of continent") @RequestParam String nomContinente) {
+    public ResponseEntity<?> saveCont(@RequestBody ContinenteDto continenteDto){
 
-	ContinenteEntity continenteEntity = contienenteService.saveCont(continenteDto, img, nomContinente);
+	ContinenteEntity continenteEntity = contienenteService.saveCont(continenteDto);
 	return new ResponseEntity<>(continenteEntity, HttpStatus.CREATED);
     }
 

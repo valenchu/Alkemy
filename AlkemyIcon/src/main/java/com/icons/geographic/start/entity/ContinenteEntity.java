@@ -40,6 +40,7 @@ public class ContinenteEntity {
     private String denominacion;
     @Column
     private Boolean deleted = Boolean.FALSE;
-    @OneToMany(mappedBy = "continente", fetch = FetchType.EAGER)
-    private List<CiudadPaisEntity> ciudad;
+    @OneToMany(mappedBy = "continente")
+    private List<CiudadPaisEntity> city;
+
 }

@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.icons.geographic.start.dto.EnrrollIconToCity;
 import com.icons.geographic.start.dto.IconDtoEdited;
 import com.icons.geographic.start.entity.CiudadPaisEntity;
 import com.icons.geographic.start.entity.IconGeograficoEntity;
@@ -29,6 +30,13 @@ public class IconMapper {
 	t.getCity().add(ciudad);
 	return t;
     }
+    public IconGeograficoEntity enrrolIconCity(IconGeograficoEntity ic, CiudadPaisEntity ci) {
+	ic.addCity(ci);
+	ci.addIcon(ic);
+	return ic;
+	
+    }
+    
 
     /*
      * Lists in Java can be mapped using custom element types.

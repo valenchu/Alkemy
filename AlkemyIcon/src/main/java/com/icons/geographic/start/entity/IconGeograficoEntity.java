@@ -17,6 +17,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -57,7 +58,11 @@ public class IconGeograficoEntity {
     @NotNull
     @NotEmpty
     private String historia;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "icon")
-    private List<CiudadPaisEntity> city = new ArrayList<CiudadPaisEntity>();
+    private List<CiudadPaisEntity> city = new ArrayList<>();
+    
+    public void addCity(CiudadPaisEntity cityAdd) {
+	city.add(cityAdd);
+    }
 }

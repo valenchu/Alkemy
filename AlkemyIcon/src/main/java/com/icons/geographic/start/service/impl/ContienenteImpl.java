@@ -24,10 +24,7 @@ public class ContienenteImpl implements ContienenteService {
     }
 
     // save img and name of continent
-    public ContinenteEntity saveCont(ContinenteDto continenteDto, String img, String nomb) {
-
-	continenteDto.setImg(img);
-	continenteDto.setDenominacion(nomb);
+    public ContinenteEntity saveCont(ContinenteDto continenteDto) {
 	ContinenteEntity con = mapCont.dtoToCont(continenteDto);
 	return continenteRepository.save(con);
     }

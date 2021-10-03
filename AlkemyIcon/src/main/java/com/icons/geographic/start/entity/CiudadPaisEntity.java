@@ -54,12 +54,15 @@ public class CiudadPaisEntity {
     @NotNull
     @NotEmpty
     private Float superficie;// m2
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "continente_id")
     private ContinenteEntity continente;
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(name = "iconn", joinColumns = @JoinColumn(name = "city_id", referencedColumnName = "id"), 
-    inverseJoinColumns = @JoinColumn(name = "icon_id", referencedColumnName = "id"))
-    private List<IconGeograficoEntity> icon = new ArrayList<IconGeograficoEntity>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "iconn", joinColumns = @JoinColumn(name = "city_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "icon_id", referencedColumnName = "id"))
+    private List<IconGeograficoEntity> icon = new ArrayList<>();
 
+    public void addIcon(IconGeograficoEntity iconAdd) {
+	this.icon.add(iconAdd);
+    }
 }
