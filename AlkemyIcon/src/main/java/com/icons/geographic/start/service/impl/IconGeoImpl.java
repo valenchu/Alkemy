@@ -1,16 +1,12 @@
 package com.icons.geographic.start.service.impl;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +15,7 @@ import com.icons.geographic.start.dto.EnrrollIconToCity;
 import com.icons.geographic.start.dto.IconDto;
 import com.icons.geographic.start.dto.IconDtoEdited;
 import com.icons.geographic.start.dto.IconDtoMinimized;
+import com.icons.geographic.start.dto.IconFilterDto;
 import com.icons.geographic.start.entity.CiudadPaisEntity;
 import com.icons.geographic.start.entity.IconGeograficoEntity;
 import com.icons.geographic.start.mapper.IconMapper;
@@ -93,37 +90,14 @@ public class IconGeoImpl implements IconGeoService {
     }
 
     @Override
-    public List<IconGeograficoEntity> search(String deno, LocalDate date, Long id) throws Exception {
+    public List<IconDto> search(String deno, LocalDate date, Set<Long> idCity) throws Exception {
 	try {
-
-//	    List<IconGeograficoEntity> icon = null;
-//	    List<IconDtoEdited> iconEd = null;
-//	    icon = iconRepository.search(deno);
-//	    iconEd = mapCont.mapList(icon, IconDtoEdited.class);
-	    CriteriaBuilder cb = em.getCriteriaBuilder();
-	    CriteriaQuery<IconGeograficoEntity> cq = cb.createQuery(IconGeograficoEntity.class);
-	    Root<IconGeograficoEntity> iconCriteria = cq.from(IconGeograficoEntity.class);
-	    CriteriaQuery<CiudadPaisEntity> cqP = cb.createQuery(CiudadPaisEntity.class);
-	    Root<CiudadPaisEntity> ciudadCriteria = cqP.from(CiudadPaisEntity.class);
-	    List<Predicate> predicate = new ArrayList<Predicate>();
-	    
-	    if (deno != null || deno != "") {
-		predicate.add(cb.like(iconCriteria.get("denominacion"), "%" + deno + "%"));
-	    }
-//	    if (date != null) {
-//		predicate.add(cb.like(iconCriteria.get("fechaCreacion"), "%" + date + "%"));
-//	    }
-	    if (id != null) {
-		predicate.add(cb.like(iconCriteria.get("id"), "%" + id + "%"));
-	    }
-	    cq.where(predicate.toArray(Predicate[]::new));
-
-	    return em.createQuery(cq).getResultList();
-
+	    List<IconGeograficoEntity> iconEntity = iconRepository.searchFilt(deno, date, idCity);// search the data
+	    List<IconDto> icon = mapCont.mapList(iconEntity, IconDto.class);// mapper list entity to dto
+	    return icon;
 	} catch (Exception e) {
 	    throw new Exception(e.getMessage());
 	}
-
     }
 
 }

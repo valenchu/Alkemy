@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.icons.geographic.start.dto.CiudadPaisDto;
 import com.icons.geographic.start.entity.CiudadPaisEntity;
-import com.icons.geographic.start.entity.ContinenteEntity;
 import com.icons.geographic.start.repository.ContinenteRepository;
 
 @Component

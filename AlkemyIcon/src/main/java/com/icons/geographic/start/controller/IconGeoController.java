@@ -2,9 +2,9 @@ package com.icons.geographic.start.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.icons.geographic.start.dto.EnrrollIconToCity;
 import com.icons.geographic.start.dto.IconDto;
 import com.icons.geographic.start.dto.IconDtoEdited;
@@ -30,10 +29,6 @@ import com.icons.geographic.start.service.IconGeoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.Explode;
-import io.swagger.v3.oas.annotations.enums.ParameterStyle;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
 @RequestMapping("icon")
@@ -56,11 +51,11 @@ public class IconGeoController {
 
     @GetMapping("search")
     @Operation(summary = "search for denominacion, date , id")
-    public ResponseEntity<?> search(@RequestParam(required = true) String deno,
-	    @Parameter(description = "yyyy-MM-dd") @DateTimeFormat(iso = ISO.DATE) @RequestParam(required = false,name = "yyyy-MM-dd") LocalDate date,
-	    @RequestParam(required = false) Long id) {
+    public ResponseEntity<?> search(@RequestParam(required = false) String deno,
+	    @Parameter(description = "yyyy-MM-dd") @DateTimeFormat(iso = ISO.DATE) @RequestParam(required = false, name = "yyyy-MM-dd") LocalDate date,
+	    @RequestParam(required = false) Set<Long> idCity) {
 	try {
-	    return new ResponseEntity<>(iconGeoService.search(deno, date, id), HttpStatus.OK);
+	    return new ResponseEntity<>(iconGeoService.search(deno, date, idCity), HttpStatus.OK);
 	} catch (Exception e) {
 	    return new ResponseEntity<>(("{\"error\": \"" + e.getMessage() + "\"}"), HttpStatus.NOT_FOUND);
 	}

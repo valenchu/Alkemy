@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.icons.geographic.start.dto.CiudadPaisCompressDto;
 import com.icons.geographic.start.dto.CiudadPaisDto;
-import com.icons.geographic.start.dto.ContinenteDto;
 import com.icons.geographic.start.entity.CiudadPaisEntity;
-import com.icons.geographic.start.entity.ContinenteEntity;
 import com.icons.geographic.start.mapper.CiudadMapper;
 import com.icons.geographic.start.repository.CiudadPaisRepository;
 import com.icons.geographic.start.repository.ContinenteRepository;
