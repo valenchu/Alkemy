@@ -1,8 +1,12 @@
 package com.icons.geographic.start.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,8 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.icons.geographic.start.dto.EnrrollIconToCity;
 import com.icons.geographic.start.dto.IconDto;
 import com.icons.geographic.start.dto.IconDtoEdited;
@@ -23,6 +29,11 @@ import com.icons.geographic.start.entity.IconGeograficoEntity;
 import com.icons.geographic.start.service.IconGeoService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.Explode;
+import io.swagger.v3.oas.annotations.enums.ParameterStyle;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
 @RequestMapping("icon")
@@ -43,12 +54,23 @@ public class IconGeoController {
 //    private String historia;
 //    private CiudadPaisDto ciudadPais;
 
+    @GetMapping("search")
+    @Operation(summary = "search for denominacion, date , id")
+    public ResponseEntity<?> search(@RequestParam(required = true) String deno,
+	    @Parameter(description = "yyyy-MM-dd") @DateTimeFormat(iso = ISO.DATE) @RequestParam(required = false,name = "yyyy-MM-dd") LocalDate date,
+	    @RequestParam(required = false) Long id) {
+	try {
+	    return new ResponseEntity<>(iconGeoService.search(deno, date, id), HttpStatus.OK);
+	} catch (Exception e) {
+	    return new ResponseEntity<>(("{\"error\": \"" + e.getMessage() + "\"}"), HttpStatus.NOT_FOUND);
+	}
+    }
+
     @PostMapping("addIcon")
     @Operation(summary = "add icon to the database")
     public ResponseEntity<?> addIcon(@RequestBody IconDtoEdited iconDto) {
 	IconGeograficoEntity ico = iconGeoService.finAll(iconDto);
 	return new ResponseEntity<>(ico, HttpStatus.CREATED);
-
     }
 
     @PostMapping("addIconCity")
@@ -56,20 +78,12 @@ public class IconGeoController {
     public ResponseEntity<?> addIconAndCity(@RequestBody IconDto iconnDto) {
 	IconGeograficoEntity ico = iconGeoService.finAll(iconnDto);
 	return new ResponseEntity<>(ico, HttpStatus.CREATED);
-
     }
 
     @GetMapping("list")
     @Operation(summary = "find all list icon for img and name")
     public ResponseEntity<?> listIcon() {
 	List<IconDtoMinimized> iconDtoMinimized = iconGeoService.getResp();
-	return new ResponseEntity<>(iconDtoMinimized, HttpStatus.OK);
-    }
-
-    @GetMapping("list2")
-    @Operation(summary = "find all list icon for img and name")
-    public ResponseEntity<?> listIcon2() {
-	List<IconDto> iconDtoMinimized = iconGeoService.getEntity();
 	return new ResponseEntity<>(iconDtoMinimized, HttpStatus.OK);
     }
 

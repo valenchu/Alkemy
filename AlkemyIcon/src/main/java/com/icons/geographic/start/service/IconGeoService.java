@@ -1,5 +1,6 @@
 package com.icons.geographic.start.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.icons.geographic.start.dto.EnrrollIconToCity;
@@ -21,6 +22,9 @@ public interface IconGeoService {
     public void deleted(Long id);
 
     public List<IconDto> getEntity();
-    
+
     public IconGeograficoEntity enrrolToCity(EnrrollIconToCity enrrollIconToCity);
+
+    public List<IconGeograficoEntity> search(String deno, LocalDate date, Long id) throws Exception;
+  
 }

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
@@ -47,6 +49,7 @@ public class IconGeograficoEntity {
     @NotNull
     @NotEmpty
     @DateTimeFormat
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaCreacion;
     @Column
     private Boolean deleted = Boolean.FALSE;
@@ -59,9 +62,9 @@ public class IconGeograficoEntity {
     @NotEmpty
     private String historia;
     @JsonIgnore
-    @ManyToMany(mappedBy = "icon")
+    @ManyToMany(mappedBy = "icon", cascade = CascadeType.ALL)
     private List<CiudadPaisEntity> city = new ArrayList<>();
-    
+
     public void addCity(CiudadPaisEntity cityAdd) {
 	city.add(cityAdd);
     }

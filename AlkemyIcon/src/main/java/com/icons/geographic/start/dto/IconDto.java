@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -23,7 +26,8 @@ public class IconDto {
     private String img;
 
     private String denominacion;
-
+    @DateTimeFormat
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaCreacion;
 
     private Float altura;

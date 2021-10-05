@@ -26,17 +26,17 @@ public class IconMapper {
     public <T> IconGeograficoEntity dtoToIcon(Object a) {
 
 	IconGeograficoEntity t = modelMapper.map(a, IconGeograficoEntity.class);
-	CiudadPaisEntity ciudad =modelMapper.map(a, CiudadPaisEntity.class);
+	CiudadPaisEntity ciudad = modelMapper.map(a, CiudadPaisEntity.class);
 	t.getCity().add(ciudad);
 	return t;
     }
+
     public IconGeograficoEntity enrrolIconCity(IconGeograficoEntity ic, CiudadPaisEntity ci) {
 	ic.addCity(ci);
 	ci.addIcon(ic);
 	return ic;
-	
+
     }
-    
 
     /*
      * Lists in Java can be mapped using custom element types.
@@ -74,6 +74,9 @@ public class IconMapper {
 		alt = icondt.getAltura();
 	    if (!icondt.getHistoria().isEmpty())
 		histori = icondt.getHistoria();
+	    if (icon.getDeleted() != icondt.getDeleted()) {
+		icon.setDeleted(icondt.getDeleted());
+	    }
 	    icon.setAltura(alt);
 	    icon.setDenominacion(denominacion);
 	    icon.setFechaCreacion(da);
