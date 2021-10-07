@@ -51,7 +51,7 @@ public interface IconRepository
 		Expression<String> cityId = joinTable.get("id");
 		predicate.add(cityId.in(idCity));
 	    }
-
+	    
 	    // Remove the repeat value
 	    query.distinct(true);
 
