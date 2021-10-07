@@ -12,17 +12,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class CiudadPaisDto {
+public class CiudadPaisDto
+{
 
-    @JsonProperty(access = Access.AUTO)
+    @JsonProperty(access = Access.READ_ONLY)
     private Long id;
+
     @NotEmpty
     private String img;
+
     @NotEmpty
     private String denominacion;
+
     @NotEmpty
     private Long cantHabitante;
+
     @NotEmpty
     private Float superficie;// m2
-    private ContinenteDto continenteEntity;
+
+    @NotEmpty
+    private Long idContinente;
 }

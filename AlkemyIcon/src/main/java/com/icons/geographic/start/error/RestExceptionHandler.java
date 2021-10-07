@@ -45,7 +45,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler(value = {MesaggeError.class})
     public ResponseEntity<Object> handleBadRequest(MesaggeError exep, WebRequest re)
     {
-        Response response = new Response(HttpStatus.INTERNAL_SERVER_ERROR, re.toString(), exep);
+        Response response = new Response(HttpStatus.INTERNAL_SERVER_ERROR, re.toString(), exep.getMessage(), exep);
         response.setSubErrors(api);
         return buildResponseEntity(response);
 

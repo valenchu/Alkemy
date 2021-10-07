@@ -12,33 +12,44 @@ import com.icons.geographic.start.entity.ContinenteEntity;
 
 @Component(value = "continenteMapper")
 
-public class ContinenteMapper {
+public class ContinenteMapper
+{
 
     private ModelMapper modelMapper;
 
     @Autowired
-    public ContinenteMapper(ModelMapper modelMapper) {
-	this.modelMapper = modelMapper;
+    public ContinenteMapper(ModelMapper modelMapper)
+    {
+        this.modelMapper = modelMapper;
     }
 
-    public ContinenteEntity dtoToCont(ContinenteDto continenteDto) {
-	return modelMapper.map(continenteDto, ContinenteEntity.class);
+    public ContinenteEntity dtoToCont(ContinenteDto continenteDto)
+    {
+        return modelMapper.map(continenteDto, ContinenteEntity.class);
     }
 
-    public ContinenteEntity guar(ContinenteEntity con, ContinenteDto continenteDto) {
-	if (continenteDto.getDenominacion().isEmpty()) {
-	    con.setImg(continenteDto.getImg());
-	} else if (continenteDto.getImg().isEmpty()) {
-	    con.setDenominacion(continenteDto.getDenominacion());
-	} else if (continenteDto.getDenominacion().isEmpty() && continenteDto.getImg().isEmpty()) {
-	    con = null;
-	}
+    public <E> E continenteEntityToAllDTO(Object dtoEntity, Class<E> targetClass)
+    {
+        return modelMapper.map(dtoEntity, targetClass);
 
-	return con;
     }
 
-    public <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
-	return source.stream().map(element -> modelMapper.map(element, targetClass)).collect(Collectors.toList());
+    public ContinenteEntity guar(ContinenteEntity con, ContinenteDto continenteDto)
+    {
+        if (continenteDto.getDenominacion().isEmpty()) {
+            con.setImg(continenteDto.getImg());
+        } else if (continenteDto.getImg().isEmpty()) {
+            con.setDenominacion(continenteDto.getDenominacion());
+        } else if (continenteDto.getDenominacion().isEmpty() && continenteDto.getImg().isEmpty()) {
+            con = null;
+        }
+
+        return con;
+    }
+
+    public <S, T> List<T> mapList(List<S> source, Class<T> targetClass)
+    {
+        return source.stream().map(element -> modelMapper.map(element, targetClass)).collect(Collectors.toList());
     }
 
 }

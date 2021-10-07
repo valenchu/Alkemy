@@ -30,39 +30,48 @@ import lombok.Data;
 @SQLDelete(sql = "UPDATE ciudad_pais SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 @Table(name = "`ciudad_pais`")
-public class CiudadPaisEntity {
+public class CiudadPaisEntity
+{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     @JsonIgnore
     private Long id;
+
     @Column
     @NotEmpty
     @NotNull
     private String img;
+
     @Column
     @NotEmpty
     @NotNull
     private String denominacion;
+
     @Column(name = "cant_habitante")
     @NotNull
     @NotEmpty
     private Long cantHabitante;
+
     @Column
     private Boolean deleted = Boolean.FALSE;
+
     @Column
     @NotNull
     @NotEmpty
     private Float superficie;// m2
+
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "continente_id")
     private ContinenteEntity continente;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "iconn", joinColumns = @JoinColumn(name = "city_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "icon_id", referencedColumnName = "id"))
     private List<IconGeograficoEntity> icon = new ArrayList<>();
 
-    public void addIcon(IconGeograficoEntity iconAdd) {
-	this.icon.add(iconAdd);
+    public void addIcon(IconGeograficoEntity iconAdd)
+    {
+        this.icon.add(iconAdd);
     }
 }

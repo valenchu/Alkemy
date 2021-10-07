@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.icons.geographic.start.dto.ContinenteDto;
 import com.icons.geographic.start.entity.ContinenteEntity;
-import com.icons.geographic.start.service.ContienenteService;
+import com.icons.geographic.start.service.ContinenteService;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -24,10 +24,10 @@ import io.swagger.v3.oas.annotations.Operation;
 @CrossOrigin("*")
 public class ContinenteController {
 
-    private final ContienenteService contienenteService;
+    private final ContinenteService contienenteService;
 
     @Autowired
-    public ContinenteController(ContienenteService contienenteService) {
+    public ContinenteController(ContinenteService contienenteService) {
 	this.contienenteService = contienenteService;
     }
 

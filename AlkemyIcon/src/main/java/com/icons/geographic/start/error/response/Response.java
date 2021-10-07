@@ -20,6 +20,8 @@ public class Response
 
     private String message;
 
+    private String mesaggeError;
+
     private String debugMessage;
 
     private List<ApiResponse> subErrors;
@@ -48,6 +50,15 @@ public class Response
         this();
         this.status = status;
         this.message = message;
+        this.debugMessage = ex.getLocalizedMessage();
+    }
+
+    public Response(HttpStatus status, String message, String mesaggeError, Throwable ex)
+    {
+        this();
+        this.status = status;
+        this.message = message;
+        this.mesaggeError = mesaggeError;
         this.debugMessage = ex.getLocalizedMessage();
     }
 
