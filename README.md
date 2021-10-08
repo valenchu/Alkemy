@@ -1,5 +1,5 @@
 # Alkemy
-- Este reopo guarda los dos ejercicios a realizar de alkemy. <br/>
+- Este repo guarda los dos ejercicios a realizar de alkemy. <br/>
 - El primero es el de practica y el segundo es el oficial de ingreso.
 ## Ejercicio PreAceleracion [AlkemyIcon](https://github.com/valenchu/Alkemy/tree/main/AlkemyIcon)
 ## Ejercicio Final [Movie](https://github.com/valenchu/Alkemy/tree/main/Movie)
@@ -15,5 +15,5 @@ http://localhost:8080/swagger-ui.html
 ## Img example page with all url of the API, Use Swagger.
 
 <div align="center">
-<img src="https://i.imgur.com/Nb6TlZK.png" width="80%" height="80%"></img>
+<img src="https://i.imgur.com/Nb6TlZK.png" width="80%" height="80%"/>
 </div>
