@@ -4,11 +4,8 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.context.request.WebRequest;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class Response
@@ -22,7 +19,7 @@ public class Response
 
     private String mesaggeError;
 
-    private String debugMessage;
+    private Throwable debugMessage;
 
     private List<ApiResponse> subErrors;
 
@@ -42,7 +39,7 @@ public class Response
         this();
         this.status = status;
         this.message = "Unexpected error";
-        this.debugMessage = ex.getLocalizedMessage();
+        this.debugMessage = ex.getCause();
     }
 
     public Response(HttpStatus status, String message, Throwable ex)
@@ -50,7 +47,7 @@ public class Response
         this();
         this.status = status;
         this.message = message;
-        this.debugMessage = ex.getLocalizedMessage();
+        this.debugMessage = ex.getCause();
     }
 
     public Response(HttpStatus status, String message, String mesaggeError, Throwable ex)
@@ -59,7 +56,7 @@ public class Response
         this.status = status;
         this.message = message;
         this.mesaggeError = mesaggeError;
-        this.debugMessage = ex.getLocalizedMessage();
+        this.debugMessage = ex.getCause();
     }
 
 }

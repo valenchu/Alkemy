@@ -1,17 +1,14 @@
 package com.icons.geographic.start.controller;
 
 import java.time.LocalDate;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,9 +25,6 @@ import com.icons.geographic.start.dto.IconDto;
 import com.icons.geographic.start.dto.IconDtoEdited;
 import com.icons.geographic.start.dto.IconDtoMinimized;
 import com.icons.geographic.start.entity.IconGeograficoEntity;
-import com.icons.geographic.start.error.MesaggeError;
-import com.icons.geographic.start.error.response.Response;
-import com.icons.geographic.start.error.response.Time;
 import com.icons.geographic.start.service.IconGeoService;
 
 import io.swagger.v3.oas.annotations.Operation;

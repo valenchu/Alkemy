@@ -8,11 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.icons.geographic.start.dto.CiudadPaisDto;
-import com.icons.geographic.start.dto.ContinenteDto;
 import com.icons.geographic.start.entity.CiudadPaisEntity;
 import com.icons.geographic.start.entity.ContinenteEntity;
-import com.icons.geographic.start.error.MesaggeError;
-import com.icons.geographic.start.repository.ContinenteRepository;
 import com.icons.geographic.start.service.ContinenteService;
 
 @Component

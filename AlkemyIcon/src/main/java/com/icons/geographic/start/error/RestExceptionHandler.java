@@ -5,21 +5,15 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.springframework.data.jpa.domain.JpaSort.Path;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.icons.geographic.start.error.response.ApiResponse;
 import com.icons.geographic.start.error.response.Response;
-import com.icons.geographic.start.error.response.Time;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler
@@ -45,10 +39,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler(value = {MesaggeError.class})
     public ResponseEntity<Object> handleBadRequest(MesaggeError exep, WebRequest re)
     {
-        Response response = new Response(HttpStatus.INTERNAL_SERVER_ERROR, re.toString(), exep.getMessage(), exep);
+        
+        Response response = new Response(HttpStatus.NOT_FOUND, re.toString(), exep.getMessage(), exep);
         response.setSubErrors(api);
         return buildResponseEntity(response);
 
     }
+    
+    
 
 }

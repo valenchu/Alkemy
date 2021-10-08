@@ -15,7 +15,6 @@ import com.icons.geographic.start.dto.EnrrollIconToCity;
 import com.icons.geographic.start.dto.IconDto;
 import com.icons.geographic.start.dto.IconDtoEdited;
 import com.icons.geographic.start.dto.IconDtoMinimized;
-import com.icons.geographic.start.dto.IconFilterDto;
 import com.icons.geographic.start.entity.CiudadPaisEntity;
 import com.icons.geographic.start.entity.IconGeograficoEntity;
 import com.icons.geographic.start.mapper.IconMapper;
