@@ -8,6 +8,7 @@ import javax.persistence.EntityNotFoundException;
 import org.apache.tomcat.util.http.fileupload.InvalidFileNameException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -39,6 +40,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> handleFileNameNotFound(
 			EntityNotFoundException exep, Throwable e) {
 		Response response = new Response(HttpStatus.NO_CONTENT);
+		response.setMessage(exep.getMessage());
+		response.setMesaggeError(e.getMessage());
+		return buildResponseEntity(response);
+
+	}
+	@ExceptionHandler(value = {BadCredentialsException.class})
+	public ResponseEntity<Object> badCredencial(BadCredentialsException exep,
+			Throwable e) {
+		Response response = new Response(HttpStatus.NON_AUTHORITATIVE_INFORMATION);
 		response.setMessage(exep.getMessage());
 		response.setMesaggeError(e.getMessage());
 		return buildResponseEntity(response);

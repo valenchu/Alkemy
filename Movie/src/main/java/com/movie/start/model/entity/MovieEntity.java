@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.SQLDelete;
@@ -43,13 +42,17 @@ public class MovieEntity {
 
 	private Float qualification;
 	private boolean deleted = Boolean.FALSE;
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH})
-	@JoinColumn(name = "id")
-	private GenderEntity gender;
+	@JoinTable(name = "movie_gender", 
+	joinColumns = @JoinColumn (name = "movie_id",referencedColumnName = "idMov"),
+	inverseJoinColumns = @JoinColumn(name = "gender_id", referencedColumnName = "id_gender"))
+	private List<GenderEntity> gender;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH})
-	@JoinTable(name = "movie_character", joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "idMov"), inverseJoinColumns = @JoinColumn(name = "character_id", referencedColumnName = "idChar"))
+	@JoinTable(name = "movie_character", 
+	joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "idMov"), 
+	inverseJoinColumns = @JoinColumn(name = "character_id", referencedColumnName = "idChar"))
 	private List<CharacterEntity> character = new ArrayList<>();
 }

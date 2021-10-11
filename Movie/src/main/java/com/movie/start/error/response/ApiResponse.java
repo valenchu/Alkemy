@@ -4,27 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-public abstract class ApiResponse
-{
+public abstract class ApiResponse {
 
 }
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
-class ExtApiResponse extends ApiResponse
-{
-    private String object;
+class ExtApiResponse extends ApiResponse {
+	private String object;
 
-    private String field;
+	private String field;
 
-    private Object rejectedValue;
+	private Object rejectedValue;
 
-    private String message;
+	private String message;
 
-    ExtApiResponse(String object, String message)
-    {
-        this.object = object;
-        this.message = message;
-    }
+	ExtApiResponse(String object, String message) {
+		this.object = object;
+		this.message = message;
+	}
 }
