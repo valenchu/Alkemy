@@ -13,16 +13,15 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @SecurityRequirement(name = "bearer_key")
 public class InicioController {
 
-	@RequestMapping(method = RequestMethod.GET)
-	
-	public String welcome() {
+    @RequestMapping(method = RequestMethod.GET)
 
-		return "<html>" + "<head>" + "<style>" + "h1 {text-align: center;}"
-				+ "</style>" + "</head>" + "<body>"
+    public String welcome() {
 
-				+ "<h1>" + "Welcome all OK" + "</h1>"
+	return "<html>" + "<head>" + "<style>" + "h1 {text-align: center;}" + "</style>" + "</head>" + "<body>"
 
-				+ "</body>" + "</html>";
-	}
+		+ "<h1>" + "Welcome all OK" + "</h1>"
+
+		+ "</body>" + "</html>";
+    }
 
 }

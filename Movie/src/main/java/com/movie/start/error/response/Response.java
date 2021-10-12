@@ -18,9 +18,9 @@ public class Response {
 
 	private String mesaggeError;
 
-	private Throwable debugMessage;
+	private StackTraceElement[] debugMessage;
 
-	private List<ApiResponse> subErrors;
+	private List<String> subErrors;
 
 	private Response() {
 		timestamp = Time.getTime();
@@ -35,23 +35,28 @@ public class Response {
 		this();
 		this.status = status;
 		this.message = "Unexpected error";
-		this.debugMessage = ex.getCause();
+		this.debugMessage = ex.getStackTrace();
 	}
 
 	public Response(HttpStatus status, String message, Throwable ex) {
 		this();
 		this.status = status;
 		this.message = message;
-		this.debugMessage = ex.getCause();
+		this.debugMessage = ex.getStackTrace();
 	}
 
-	public Response(HttpStatus status, String message, String mesaggeError,
-			Throwable ex) {
+	public Response(HttpStatus status, String message, String mesaggeError, Throwable ex) {
 		this();
 		this.status = status;
 		this.message = message;
 		this.mesaggeError = mesaggeError;
-		this.debugMessage = ex.getCause();
+		this.debugMessage = ex.getStackTrace();
+	}
+	public Response(HttpStatus status, String message, List<String> subErrors) {
+		this();
+		this.status = status;
+		this.message = message;
+		this.subErrors = subErrors;
 	}
 
 }

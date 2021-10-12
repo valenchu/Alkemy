@@ -7,6 +7,7 @@ import com.movie.start.model.dto.GenderCompressDto;
 import com.movie.start.model.entity.GenderEntity;
 
 public interface GenderService {
-	public GenderCompressDto createGender(GenderCompressDto genderDto);
-	public List<GenderEntity> getByIdGender(Set<Long> id);
+    public GenderCompressDto createGender(GenderCompressDto genderDto);
+
+    public List<GenderEntity> getByIdGender(Set<Long> id);
 }

@@ -21,19 +21,18 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @SecurityRequirement(name = "bearer_key")
 public class GenderController {
 
-	private GenderService genderService;
-	@Autowired
-	public GenderController(GenderService genderService) {
-		this.genderService = genderService;
-	}
+    private GenderService genderService;
 
-	@PostMapping("create")
-	@Operation(description = "{\r\n" + "  \"name\": \"string\",\r\n"
-			+ "  \"imagen\": \"string\"\r\n"
-			+ "}", summary = "Create gender in DB")
-	public ResponseEntity<?> createGender(
-			@RequestBody(required = false) GenderCompressDto dto) {
-		
-		return new ResponseEntity<>(genderService.createGender(dto),HttpStatus.OK);
-	}
+    @Autowired
+    public GenderController(GenderService genderService) {
+	this.genderService = genderService;
+    }
+
+    @PostMapping("create")
+    @Operation(description = "{\r\n" + "  \"name\": \"string\",\r\n" + "  \"imagen\": \"string\"\r\n"
+	    + "}", summary = "Create gender in DB")
+    public ResponseEntity<?> createGender(@RequestBody(required = false) GenderCompressDto dto) {
+
+	return new ResponseEntity<>(genderService.createGender(dto), HttpStatus.OK);
+    }
 }

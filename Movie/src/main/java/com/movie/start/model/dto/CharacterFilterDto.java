@@ -1,5 +1,8 @@
 package com.movie.start.model.dto;
 
+import java.util.Set;
+
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -10,9 +13,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CharacterCompressDto {
+public class CharacterFilterDto {
+	
+	private String name;
 
-    private String imagen;
+	@Min(value = 0)
+	private Integer age;
+	
+	private Set<Long> id_movie;
 
-    private String name;
 }

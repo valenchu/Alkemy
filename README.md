@@ -12,8 +12,8 @@ http://localhost:8080/swagger-ui.html
 ```
 
 
-## Img example page with all url of the API, Use Swagger.
+## Img Movie-Controller.
 
 <div align="center">
-<img src="https://i.imgur.com/Nb6TlZK.png" width="80%" height="80%"/>
+<img src="https://i.imgur.com/rtgdQS4.png" width="80%" height="80%"/>
 </div>

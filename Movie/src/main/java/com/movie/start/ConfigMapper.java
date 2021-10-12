@@ -8,16 +8,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ConfigMapper {
-	@Bean
-	public ModelMapper modelMapper() {
+    @Bean
+    public ModelMapper modelMapper() {
 
-		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.getConfiguration()
-				.setMatchingStrategy(MatchingStrategies.STANDARD);
-		modelMapper.getConfiguration()
-				.setPropertyCondition(Conditions.isNotNull());
-		modelMapper.getConfiguration().setAmbiguityIgnored(true);
-		return modelMapper;
+	ModelMapper modelMapper = new ModelMapper();
+	modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
+	modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
+	modelMapper.getConfiguration().setAmbiguityIgnored(true);
+	return modelMapper;
 
-	}
+    }
 }

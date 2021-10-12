@@ -9,10 +9,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.movie.start.security.dto.AuthenticationDto;
+import com.movie.start.security.dto.UserDto;
 import com.movie.start.security.entity.UserEntity;
 import com.movie.start.security.mapper.UserMapper;
 import com.movie.start.security.repository.UserRepository;
+import com.movie.start.service.SendGridService;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
@@ -20,10 +21,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	private UserRepository userRepo;
 	@Autowired
 	private UserMapper mapper;
+	@Autowired
+	private SendGridService sendGridService;
 
 	@Override
-	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// username = "user";
 		// Obtain the user to user DB
 		UserEntity u = userRepo.findByUser(username);
@@ -36,19 +38,21 @@ public class UserDetailServiceImpl implements UserDetailsService {
 				return new User(username, pass, Collections.emptyList());
 
 			} else {
-				throw new UsernameNotFoundException(
-						"Username or Password ICORRECT");
+				throw new UsernameNotFoundException("Username or Password ICORRECT");
 			}
 		} else {
-			throw new UsernameNotFoundException(
-					"Username or Password ICORRECT");
+			throw new UsernameNotFoundException("Username or Password ICORRECT");
 		}
 	}
 
-	public UserEntity saveUser(AuthenticationDto authenticationDto) {
-		UserEntity user = mapper.authentication2User(authenticationDto);
+	public void saveUser(UserDto userDto, String pass) {
+		UserEntity user = mapper.authentication2User(userDto);
+		if (user.getUser() != null && !user.getUser().isEmpty()) {
+
+			sendGridService.senEmail(user.getUser(), mapper.htmlWelcome(user.getUser(), pass));
+		}
 		userRepo.save(user);
-		return user;
+
 	}
 
 }

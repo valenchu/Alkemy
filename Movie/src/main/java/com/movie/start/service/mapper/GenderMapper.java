@@ -9,11 +9,11 @@ import com.movie.start.model.entity.GenderEntity;
 
 @Component
 public class GenderMapper {
-	@Autowired
-	private ModelMapper mapper;
-	
-	public GenderEntity genderDto2GenderEntity(GenderCompressDto dto) {
-		return mapper.map(dto, GenderEntity.class);
-	}
+    @Autowired
+    private ModelMapper mapper;
+
+    public GenderEntity genderDto2GenderEntity(GenderCompressDto dto) {
+	return mapper.map(dto, GenderEntity.class);
+    }
 
 }

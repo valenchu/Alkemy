@@ -14,49 +14,47 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.movie.start.security.filter.JwtRequestFilter;
 import com.movie.start.security.service.UserDetailServiceImpl;
+
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private UserDetailServiceImpl userService;
+    @Autowired
+    private UserDetailServiceImpl userService;
 
-	@Autowired
-	private JwtRequestFilter filter;
+    @Autowired
+    private JwtRequestFilter filter;
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+	return new BCryptPasswordEncoder();
+    }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth)
-			throws Exception {
-		auth.parentAuthenticationManager(authenticationManagerBean());
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	auth.parentAuthenticationManager(authenticationManagerBean());
+	auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 
-	}
+    }
 
-	@Override
-	@Bean
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+	return super.authenticationManagerBean();
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
-				.antMatchers("/login", "/v3/api-docs/**", "/swagger-ui.html",
-						"/swagger-ui/**", "/swagger-resources/**", "/register")
-				.permitAll().anyRequest().authenticated().and()
-				.exceptionHandling().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+	http.csrf().disable().authorizeRequests()
+		.antMatchers("/login", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/swagger-resources/**",
+			"/register")
+		.permitAll().anyRequest().authenticated().and().exceptionHandling().and().sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-		http.addFilterBefore(filter,
-				UsernamePasswordAuthenticationFilter.class);
-	}
-	// @Override
-	// public void configure(WebSecurity web) throws Exception{
-	// web.ignoring().antMatchers("/v3/api-docs/**", "/swagger-ui.html",
-	// "/swagger-ui/**","/swagger-resources/**");
-	// }
+	http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+    }
+    // @Override
+    // public void configure(WebSecurity web) throws Exception{
+    // web.ignoring().antMatchers("/v3/api-docs/**", "/swagger-ui.html",
+    // "/swagger-ui/**","/swagger-resources/**");
+    // }
 
 }

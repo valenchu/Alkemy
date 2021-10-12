@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,17 +29,18 @@ import lombok.NoArgsConstructor;
 @Where(clause = "deleted = false")
 @Table(name = "`character`")
 public class CharacterEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_char")
-	private Long idChar;
-	private String imagen;
-	private String name;
-	private Integer age;
-	private Float weight;
-	private String history;
-	private boolean deleted = Boolean.FALSE;
-	@ManyToMany(mappedBy = "character", cascade = CascadeType.ALL)
-	private List<MovieEntity> movie = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id_char")
+    private Long idChar;
+    private String imagen;
+    private String name;
+    private Integer age;
+    private Float weight;
+    private String history;
+    private boolean deleted = Boolean.FALSE;
+    @JsonBackReference
+    @ManyToMany(mappedBy = "character", cascade = CascadeType.ALL)
+    private List<MovieEntity> movie = new ArrayList<>();
 
 }
