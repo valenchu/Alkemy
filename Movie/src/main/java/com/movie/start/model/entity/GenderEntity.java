@@ -1,12 +1,14 @@
 package com.movie.start.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.SQLDelete;
@@ -21,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "`gender`")
-@SQLDelete(sql = "UPDATE gender SET deleted = true WHERE id = ? ")
+@SQLDelete(sql = "UPDATE `gender` g SET deleted = true WHERE ID_GENDER = ?")
 @Where(clause = "deleted = false")
 public class GenderEntity {
 	@Id
@@ -30,7 +32,8 @@ public class GenderEntity {
 	private String name;
 	private String imagen;
 	private boolean deleted = Boolean.FALSE;
-	@OneToMany(mappedBy = "gender")
-	private List<MovieEntity> movie;
+	@ManyToMany(mappedBy = "gender", cascade = {CascadeType.PERSIST,
+			CascadeType.MERGE})
+	private List<MovieEntity> movie = new ArrayList<>();
 
 }

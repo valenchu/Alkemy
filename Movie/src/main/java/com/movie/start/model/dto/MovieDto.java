@@ -20,7 +20,8 @@ public class MovieDto {
 	private String title;
 	@DateTimeFormat
 	private LocalDate dateCreation;
-	private GenderEntity gender;
+	private Float qualification;
+	private List<GenderEntity> gender;
 	private List<CharacterEntity> character = new ArrayList<>();
 
 }

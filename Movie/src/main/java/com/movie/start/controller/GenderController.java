@@ -1,6 +1,7 @@
 package com.movie.start.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,10 +13,12 @@ import com.movie.start.model.dto.GenderCompressDto;
 import com.movie.start.service.GenderService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("gender")
 @CrossOrigin("*")
+@SecurityRequirement(name = "bearer_key")
 public class GenderController {
 
 	private GenderService genderService;
@@ -25,10 +28,12 @@ public class GenderController {
 	}
 
 	@PostMapping("create")
-	@Operation(description = "Create a gender in the DB", summary = "hola")
+	@Operation(description = "{\r\n" + "  \"name\": \"string\",\r\n"
+			+ "  \"imagen\": \"string\"\r\n"
+			+ "}", summary = "Create gender in DB")
 	public ResponseEntity<?> createGender(
 			@RequestBody(required = false) GenderCompressDto dto) {
-
-		return null;
+		
+		return new ResponseEntity<>(genderService.createGender(dto),HttpStatus.OK);
 	}
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,11 +29,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "`movie_serie`")
-@SQLDelete(sql = "UPDATE movie_serie SET deleted = true WHERE id = ? ")
+@SQLDelete(sql = "UPDATE `movie_serie` m SET deleted = true WHERE ID_MOV = ?")
 @Where(clause = "deleted = false")
 public class MovieEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "`id_mov`")
 	private Long idMov;
 	private String imagen;
 	private String title;
@@ -42,17 +44,13 @@ public class MovieEntity {
 
 	private Float qualification;
 	private boolean deleted = Boolean.FALSE;
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH})
-	@JoinTable(name = "movie_gender", 
-	joinColumns = @JoinColumn (name = "movie_id",referencedColumnName = "idMov"),
-	inverseJoinColumns = @JoinColumn(name = "gender_id", referencedColumnName = "id_gender"))
-	private List<GenderEntity> gender;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,
+			CascadeType.MERGE})
+	@JoinTable(name = "movie_gender", joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id_mov"), inverseJoinColumns = @JoinColumn(name = "gender_id", referencedColumnName = "id_gender"))
+	private List<GenderEntity> gender = new ArrayList<>();
 
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH})
-	@JoinTable(name = "movie_character", 
-	joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "idMov"), 
-	inverseJoinColumns = @JoinColumn(name = "character_id", referencedColumnName = "idChar"))
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,
+			CascadeType.MERGE})
+	@JoinTable(name = "movie_character", joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id_mov"), inverseJoinColumns = @JoinColumn(name = "character_id", referencedColumnName = "id_char"))
 	private List<CharacterEntity> character = new ArrayList<>();
 }

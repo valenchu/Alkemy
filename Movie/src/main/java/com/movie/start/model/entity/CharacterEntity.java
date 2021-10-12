@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,12 +23,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "`character`")
-@SQLDelete(sql = "UPDATE character SET deleted = true WHERE id = ? ")
+@SQLDelete(sql = "UPDATE `character` c SET deleted = true WHERE ID_CHAR = ? ")
 @Where(clause = "deleted = false")
+@Table(name = "`character`")
 public class CharacterEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id_char")
 	private Long idChar;
 	private String imagen;
 	private String name;
@@ -35,8 +37,7 @@ public class CharacterEntity {
 	private Float weight;
 	private String history;
 	private boolean deleted = Boolean.FALSE;
-	@ManyToMany(mappedBy = "character", cascade = {CascadeType.PERSIST,
-			CascadeType.MERGE, CascadeType.REFRESH})
+	@ManyToMany(mappedBy = "character", cascade = CascadeType.ALL)
 	private List<MovieEntity> movie = new ArrayList<>();
 
 }

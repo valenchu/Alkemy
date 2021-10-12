@@ -16,5 +16,5 @@ public class MovieCompressDto {
 	private String title;
 	@DateTimeFormat
 	private LocalDate dateCreation;
-
+	private Float qualification;
 }
