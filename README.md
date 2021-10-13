@@ -21,7 +21,7 @@ http://localhost:8080/swagger-ui.html
 2# EMAIL_FROM -> Here. I putted the email from.
 
 
-## Img Movie-Controller.
+## Img Movie-Controller
 
 <div align="center">
 <img src="https://i.imgur.com/rtgdQS4.png" width="80%" height="80%"/>
@@ -31,7 +31,7 @@ http://localhost:8080/swagger-ui.html
 
 - [TO_README_MOVIE_CONTROLLER](https://github.com/valenchu/Pre-aceleracion-Valentin-Cassino/blob/main/Movie/src/main/resources/templates/Documentation/Movie-Controller/ReadmeMovieController.md)
 
-## Img Character-Controller.
+## Img Character-Controller
 
 <div align="center">
 <img src="https://i.imgur.com/Q4WdzMn.png" width="80%" height="80%"/>
@@ -40,5 +40,11 @@ http://localhost:8080/swagger-ui.html
 ### Documentation charater-controller
 
 - [TO_README_CHARACTER_CONTROLLER](https://github.com/valenchu/Pre-aceleracion-Valentin-Cassino/blob/main/Movie/src/main/resources/templates/Documentation/Character-Controller/ReadmeCharacterController.md)
+
+## Img User-Controller-AND-Gender-Controller
+
+<div align="center">
+<img src="https://i.imgur.com/sH1BUXQ.png" width="80%" height="80%"/>
+</div>
 
 ### Documentation gender-controller AND User-register-login-controller
