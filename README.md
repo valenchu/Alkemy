@@ -1,12 +1,20 @@
+
 # Alkemy
 - Este repo guarda los dos ejercicios a realizar de alkemy. <br/>
 - El primero es el de practica y el segundo es el oficial de ingreso.
 ## Ejercicio PreAceleracion [AlkemyIcon](https://github.com/valenchu/Alkemy/tree/main/AlkemyIcon)
 ## Ejercicio Final [Movie](https://github.com/valenchu/Alkemy/tree/main/Movie)
 
-## Diagram BD to Movie
+## Diagram BD of Movie
 <div align="center">
 <img src="https://i.imgur.com/coKJF0i.png" width="50%" height="50%"/>
+</div>
+
+## Diagram UML Entity of Movie
+
+
+<div align="center">
+<img src="https://i.imgur.com/j9g5MPX.png" width="50%" height="50%"/>
 </div>
 
 
