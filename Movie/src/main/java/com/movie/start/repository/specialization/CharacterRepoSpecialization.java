@@ -3,6 +3,7 @@ package com.movie.start.repository.specialization;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
@@ -34,8 +35,8 @@ public class CharacterRepoSpecialization {
 			}
 			if (!CollectionUtils.isEmpty(filterDto.getId_movie())) {// != null
 				Join<CharacterEntity, MovieEntity> joinTable = root.join("movie", JoinType.INNER);
-//				Expression<String> movId = joinTable.get("ID_MOV");
-				predicate.add(criBuild.like(joinTable.get("idMov").as(String.class),"%"+filterDto.getId_movie()+"%"));
+				Expression<String> movId = joinTable.get("idMov");
+				predicate.add(movId.in(filterDto.getId_movie()));
 
 			}
 

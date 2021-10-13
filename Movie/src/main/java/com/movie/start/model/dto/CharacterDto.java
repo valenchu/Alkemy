@@ -26,7 +26,7 @@ public class CharacterDto {
 	@Min(value = 0)
 	private Integer age;
 
-	@Size(min = 0)
+	@Min(value = 0)
 	private Float weight;
 
 	private String history;
