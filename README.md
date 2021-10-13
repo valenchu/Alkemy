@@ -4,6 +4,10 @@
 ## Ejercicio PreAceleracion [AlkemyIcon](https://github.com/valenchu/Alkemy/tree/main/AlkemyIcon)
 ## Ejercicio Final [Movie](https://github.com/valenchu/Alkemy/tree/main/Movie)
 
+## Diagram BD to Movie
+<div align="center">
+<img src="https://i.imgur.com/coKJF0i.png" width="50%" height="50%"/>
+</div>
 
 
 #### Insert this url for view all url to API 
