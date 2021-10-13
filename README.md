@@ -12,6 +12,7 @@ http://localhost:8080/swagger-ui.html
 
 Insert two Environment in the IDE
 1# SendGrid [API_KEY]  [Send_Grid](https://sendgrid.com/ "Send_Grid")
+
 2# EMAIL_FROM -> Here. I putted the email from.
 
 
